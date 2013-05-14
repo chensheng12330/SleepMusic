@@ -17,12 +17,8 @@ AVAudioPlayerDelegate>
     //AVAudioPlayer *thePlayer;
     
     NSTimer *timer ;
-    NSTimer *color_timer ;
 	NSInteger nCurPalyMusic,nOldSeletMusic;
-	NSMutableArray *mr_musicList;//歌曲列表
-	NSArray *dataSource;
-	NSArray *ar_musicName;
-	//AVAudioPlayer *thePlayer;
+	NSMutableArray *mr_musicList;//歌曲列表 path值
 	
 	long setPlayTime;  //用户设置时间
 	long curPlaytime;  //当前已播放时间

@@ -15,6 +15,7 @@ AVAudioPlayer *thePlayer = nil;
 @end
 
 @implementation SHMainViewController
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -42,7 +43,6 @@ AVAudioPlayer *thePlayer = nil;
 	
 	//加入定时器
 	timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
-    color_timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(ChangeMusic_color:) userInfo:nil repeats:YES];
 	
 	//禁止锁屏
 	[UIApplication sharedApplication].idleTimerDisabled = YES;
@@ -79,7 +79,7 @@ AVAudioPlayer *thePlayer = nil;
     [session setCategory:AVAudioSessionCategoryPlayback error:nil];
     [[AVAudioSession sharedInstance] setDelegate: self];
     
-	NSURL *musicURL = [[NSBundle mainBundle] URLForResource: [ar_musicName objectAtIndex:index]
+	NSURL *musicURL = [[NSBundle mainBundle] URLForResource: [mr_musicList objectAtIndex:index]
 											  withExtension: @"mp3"];
     
     if (thePlayer == nil)
