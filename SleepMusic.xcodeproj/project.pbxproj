@@ -20,6 +20,14 @@
 		580C029F1740E530008F2393 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 580C02961740E530008F2393 /* whiteArrow@2x.png */; };
 		580C02A11740EA39008F2393 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 580C02A01740EA39008F2393 /* QuartzCore.framework */; };
 		580C02A51740F2A7008F2393 /* ADLivelyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 580C02A41740F2A7008F2393 /* ADLivelyTableView.m */; };
+		5810EF7E17432BB900696B70 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5810EF7D17432BB900696B70 /* MediaPlayer.framework */; };
+		5810EF8017432BCC00696B70 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5810EF7F17432BCC00696B70 /* CoreMedia.framework */; };
+		5810EF84174330D400696B70 /* Acoustic Noodling1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5810EF81174330D400696B70 /* Acoustic Noodling1.caf */; };
+		5810EF85174330D400696B70 /* Acoustic Noodling2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5810EF82174330D400696B70 /* Acoustic Noodling2.caf */; };
+		5810EF86174330D400696B70 /* Acoustic Noodling3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5810EF83174330D400696B70 /* Acoustic Noodling3.caf */; };
+		5810EF891743336E00696B70 /* SHCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 5810EF881743336E00696B70 /* SHCommon.m */; };
+		5810EF8E1743378400696B70 /* volumeBar.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5810EF8B1743378400696B70 /* volumeBar.bundle */; };
+		5810EF8F1743378400696B70 /* VolumeBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5810EF8D1743378400696B70 /* VolumeBar.m */; };
 		58172E85173DDBE4003B7384 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58172E84173DDBE4003B7384 /* UIKit.framework */; };
 		58172E87173DDBE4003B7384 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58172E86173DDBE4003B7384 /* Foundation.framework */; };
 		58172E89173DDBE4003B7384 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58172E88173DDBE4003B7384 /* CoreGraphics.framework */; };
@@ -76,6 +84,16 @@
 		580C02A01740EA39008F2393 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		580C02A31740F2A7008F2393 /* ADLivelyTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADLivelyTableView.h; sourceTree = "<group>"; };
 		580C02A41740F2A7008F2393 /* ADLivelyTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADLivelyTableView.m; sourceTree = "<group>"; };
+		5810EF7D17432BB900696B70 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		5810EF7F17432BCC00696B70 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		5810EF81174330D400696B70 /* Acoustic Noodling1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Acoustic Noodling1.caf"; sourceTree = "<group>"; };
+		5810EF82174330D400696B70 /* Acoustic Noodling2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Acoustic Noodling2.caf"; sourceTree = "<group>"; };
+		5810EF83174330D400696B70 /* Acoustic Noodling3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Acoustic Noodling3.caf"; sourceTree = "<group>"; };
+		5810EF871743336E00696B70 /* SHCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCommon.h; sourceTree = "<group>"; };
+		5810EF881743336E00696B70 /* SHCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCommon.m; sourceTree = "<group>"; };
+		5810EF8B1743378400696B70 /* volumeBar.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = volumeBar.bundle; sourceTree = "<group>"; };
+		5810EF8C1743378400696B70 /* VolumeBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumeBar.h; sourceTree = "<group>"; };
+		5810EF8D1743378400696B70 /* VolumeBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeBar.m; sourceTree = "<group>"; };
 		58172E81173DDBE4003B7384 /* SleepMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SleepMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58172E84173DDBE4003B7384 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		58172E86173DDBE4003B7384 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -119,6 +137,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5810EF8017432BCC00696B70 /* CoreMedia.framework in Frameworks */,
+				5810EF7E17432BB900696B70 /* MediaPlayer.framework in Frameworks */,
 				585E374517412D5A0060C22F /* AudioToolbox.framework in Frameworks */,
 				580C02A11740EA39008F2393 /* QuartzCore.framework in Frameworks */,
 				580C02861740CF6C008F2393 /* AVFoundation.framework in Frameworks */,
@@ -144,9 +164,12 @@
 		580C028A1740E530008F2393 /* LIB */ = {
 			isa = PBXGroup;
 			children = (
+				5810EF8A1743378400696B70 /* VolumeBar */,
 				585E374017411D810060C22F /* NSString_File */,
 				580C02A21740F2A7008F2393 /* ADLivelyTableView */,
 				580C028B1740E530008F2393 /* PullRefresh */,
+				5810EF871743336E00696B70 /* SHCommon.h */,
+				5810EF881743336E00696B70 /* SHCommon.m */,
 			);
 			name = LIB;
 			path = SleepMusic/LIB;
@@ -186,6 +209,16 @@
 			path = ADLivelyTableView;
 			sourceTree = "<group>";
 		};
+		5810EF8A1743378400696B70 /* VolumeBar */ = {
+			isa = PBXGroup;
+			children = (
+				5810EF8B1743378400696B70 /* volumeBar.bundle */,
+				5810EF8C1743378400696B70 /* VolumeBar.h */,
+				5810EF8D1743378400696B70 /* VolumeBar.m */,
+			);
+			path = VolumeBar;
+			sourceTree = "<group>";
+		};
 		58172E78173DDBE4003B7384 = {
 			isa = PBXGroup;
 			children = (
@@ -210,6 +243,8 @@
 		58172E83173DDBE4003B7384 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5810EF7F17432BCC00696B70 /* CoreMedia.framework */,
+				5810EF7D17432BB900696B70 /* MediaPlayer.framework */,
 				585E374417412D5A0060C22F /* AudioToolbox.framework */,
 				580C02A01740EA39008F2393 /* QuartzCore.framework */,
 				580C02851740CF6C008F2393 /* AVFoundation.framework */,
@@ -236,6 +271,9 @@
 		58172E8B173DDBE4003B7384 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5810EF81174330D400696B70 /* Acoustic Noodling1.caf */,
+				5810EF82174330D400696B70 /* Acoustic Noodling2.caf */,
+				5810EF83174330D400696B70 /* Acoustic Noodling3.caf */,
 				580C02831740CE59008F2393 /* Test.mp3 */,
 				58172EC8173E4E86003B7384 /* Image */,
 				58172E8C173DDBE4003B7384 /* SleepMusic-Info.plist */,
@@ -406,6 +444,10 @@
 				580C029D1740E530008F2393 /* grayArrow@2x.png in Resources */,
 				580C029E1740E530008F2393 /* whiteArrow.png in Resources */,
 				580C029F1740E530008F2393 /* whiteArrow@2x.png in Resources */,
+				5810EF84174330D400696B70 /* Acoustic Noodling1.caf in Resources */,
+				5810EF85174330D400696B70 /* Acoustic Noodling2.caf in Resources */,
+				5810EF86174330D400696B70 /* Acoustic Noodling3.caf in Resources */,
+				5810EF8E1743378400696B70 /* volumeBar.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +489,8 @@
 				580C02971740E530008F2393 /* EGORefreshTableHeaderView.m in Sources */,
 				580C02A51740F2A7008F2393 /* ADLivelyTableView.m in Sources */,
 				585E374317411D810060C22F /* NSString+NSString_File.m in Sources */,
+				5810EF891743336E00696B70 /* SHCommon.m in Sources */,
+				5810EF8F1743378400696B70 /* VolumeBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,7 +624,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "A159764B-AA73-4333-B2DB-8D7B8EAC34C0";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A159764B-AA73-4333-B2DB-8D7B8EAC34C0";
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -597,7 +641,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "A159764B-AA73-4333-B2DB-8D7B8EAC34C0";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A159764B-AA73-4333-B2DB-8D7B8EAC34C0";
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

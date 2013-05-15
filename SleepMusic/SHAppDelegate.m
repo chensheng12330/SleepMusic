@@ -21,6 +21,21 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //这种方式后台，可以连续播放非网络请求歌曲。遇到网络请求歌曲就废，需要后台申请task
+    
+    /*
+     * AudioSessionInitialize用于处理中断处理，
+     * AVAudioSession主要调用setCategory和setActive方法来进行设置，
+     * AVAudioSessionCategoryPlayback一般用于支持后台播放
+     */
+    
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    NSError *setCategoryError = nil;
+    [session setCategory:AVAudioSessionCategoryPlayback error:&setCategoryError];
+    NSError *activationError = nil;
+    [session setActive:YES error:&activationError];
+    
+    //system
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {

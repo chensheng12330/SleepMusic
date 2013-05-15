@@ -7,7 +7,8 @@
 //
 
 #import "SHFlipsideViewController.h"
-#import "NSString+NSString_File.h"
+
+#import "SHCommon.h"
 
 @interface SHFlipsideViewController ()
 -(void) searchAllFiles;
@@ -36,7 +37,7 @@
     
     //load file list from documnt
     
-    fileList = [[[NSString getCachesPath] stringByAppendingPathComponent:@"file_list.plist"] retain];
+    fileList = [[[NSString getCachesPath] stringByAppendingPathComponent:[SHCommon getMusicListFileName]] retain];
     
     NSFileManager *fileMg = [NSFileManager defaultManager];
     if([fileMg fileExistsAtPath:fileList])
@@ -51,8 +52,10 @@
         [self searchAllFiles];
     }
     
+    
+    //初始化下拉刷新控件
     if (_refreshTableView == nil) {
-        //初始化下拉刷新控件
+        
         EGORefreshTableHeaderView *refreshView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.myTableView.bounds.size.height, self.view.frame.size.width, self.myTableView.bounds.size.height)];
         refreshView.delegate = self;
         //将下拉刷新控件作为子控件添加到UITableView中

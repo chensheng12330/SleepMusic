@@ -14,11 +14,11 @@
 @interface SHMainViewController : UIViewController <SHFlipsideViewControllerDelegate,
 AVAudioPlayerDelegate>
 {
-    //AVAudioPlayer *thePlayer;
+    NSTimer *playTimer;
+    NSTimer *sleepTime;
     
-    NSTimer *timer ;
 	NSInteger nCurPalyMusic,nOldSeletMusic;
-	NSMutableArray *mr_musicList;//歌曲列表 path值
+	NSMutableArray *_mrMusicList;//歌曲列表 path值
 	
 	long setPlayTime;  //用户设置时间
 	long curPlaytime;  //当前已播放时间
@@ -39,6 +39,8 @@ AVAudioPlayerDelegate>
 - (IBAction) SetterPageBack: (id) sender;
 - (IBAction) ChangeMusic_prev:(id) sender;
 - (IBAction) ChangeMusic_next:(id) sender;
+- (IBAction) StopMusicPlay:(id) sender;
+
 - (IBAction) ChoiceMusic:(id) sender;
 
 - (void)handleTimer:(NSTimer *)timer; //定时器处理

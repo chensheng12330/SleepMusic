@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EGORefreshTableHeaderView.h"
 #import "ADLivelyTableView.h"
-
+#import "NSString+NSString_File.h"
 
 @class SHFlipsideViewController;
 

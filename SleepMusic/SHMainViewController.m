@@ -6,12 +6,18 @@
 //  Copyright (c) 2013年 sherwin.chen. All rights reserved.
 //
 
+#import <MediaPlayer/MediaPlayer.h>
 #import "SHMainViewController.h"
+#import "VolumeBar.h"
 
 AVAudioPlayer *thePlayer = nil;
 
 @interface SHMainViewController ()
 
+-(void)PlayButtionState:(BOOL) state; //YES:play  NO:stop
+-(void)configNowPlayingInfoCenter;
+
+-(void)onVolumeBarChange:(VolumeBar*) sender;
 @end
 
 @implementation SHMainViewController
@@ -21,7 +27,7 @@ AVAudioPlayer *thePlayer = nil;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-		mr_musicList  = [[NSMutableArray alloc] init];
+		_mrMusicList  = [[NSMutableArray alloc] init];
 		nCurPalyMusic = 0;
 		nOldSeletMusic= 0;
 		isPlay = NO;
@@ -33,32 +39,64 @@ AVAudioPlayer *thePlayer = nil;
     return self;
 }
 
+#pragma mark - View init
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    //add music
-    [self AddMusicPlay:0];
+    //NSString
+    
+    for (int i=1; i<4; i++) {
+        NSString *testPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"Acoustic Noodling%d",i] ofType:@"caf"];
+        [_mrMusicList addObject:testPath];
+    }
 	
 	//加入定时器
-	timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
+	//timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
 	
 	//禁止锁屏
 	[UIApplication sharedApplication].idleTimerDisabled = YES;
+    
+    //2. 让后台可以处理多媒体的事件
+    //[[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    
+    // add music volume UI
+    CGRect frame = CGRectMake(745, 530,0,0);// 大小由背景图决定
+    VolumeBar *bar = [[VolumeBar alloc] initWithFrame:frame minimumVolume:0 maximumVolume:10];
+    [bar addTarget:self action:@selector(onVolumeBarChange:) forControlEvents:UIControlEventValueChanged];
+    
+    [self.view addSubview:bar];
+    bar.currentVolume = 4;
 }
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    //Once the view has loaded then we can register to begin recieving controls and we can become the first responder
+    
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    [self becomeFirstResponder];
+    [self configNowPlayingInfoCenter];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    //End recieving events
+    [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
+    [self resignFirstResponder];
+    
+    //else
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
+	//[timer invalidate];
+}
+
+
 
 - (void)viewDidUnload{
 	[super viewDidUnload];
     [thePlayer stop];
 }
-
--(void) viewWillDisappear:(BOOL)animated
-{
-    [UIApplication sharedApplication].idleTimerDisabled = NO;
-	[timer invalidate];
-}
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -72,15 +110,92 @@ AVAudioPlayer *thePlayer = nil;
     [super dealloc];
 }
 
+#pragma mark - back music play setting
+//设置锁屏状态，显示的歌曲信息
+-(void)configNowPlayingInfoCenter
+{
+    if (NSClassFromString(@"MPNowPlayingInfoCenter")) {
+        NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+        [dict setObject:@"name" forKey:MPMediaItemPropertyTitle];
+        [dict setObject:@"singer" forKey:MPMediaItemPropertyArtist];
+        [dict setObject:@"album" forKey:MPMediaItemPropertyAlbumTitle];
+        UIImage *image = [UIImage imageNamed:@"back_image.png"];
+        
+        MPMediaItemArtwork *artwork = [[MPMediaItemArtwork alloc] initWithImage:image];
+        [dict setObject:artwork forKey:MPMediaItemPropertyArtwork];
+        [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:dict];
+    }
+}
+-(BOOL)canBecomeFirstResponder{
+    return YES;
+}
+
+-(void)remoteControlReceivedWithEvent:(UIEvent *)event{
+    //if it is a remote control event handle it correctly
+    if (event.type == UIEventTypeRemoteControl) {
+        
+        switch (event.subtype) {
+            case UIEventSubtypeRemoteControlTogglePlayPause:
+            {
+                NSLog(@"UIEventSubtypeRemoteControlTogglePlayPause...");
+                [self playMusic:nil];
+                break;
+            }
+            case UIEventSubtypeRemoteControlPlay:
+                
+            {
+                NSLog(@"UIEventSubtypeRemoteControlPlay...");
+                break;
+            }
+            case UIEventSubtypeRemoteControlPause:
+                
+            {
+                NSLog(@"UIEventSubtypeRemoteControlPause...");
+                break;
+            }
+            case UIEventSubtypeRemoteControlStop:
+                
+            {
+                NSLog(@"UIEventSubtypeRemoteControlStop...");
+                break;
+            }
+                
+            case UIEventSubtypeRemoteControlNextTrack:
+                
+            {
+                //[self nextSongAuto];
+                
+                //[self configNowPlayingInfoCenter];
+                [self ChangeMusic_next:nil];
+                NSLog(@"UIEventSubtypeRemoteControlNextTrack...");
+                break;
+            }
+            case UIEventSubtypeRemoteControlPreviousTrack:
+                
+            {
+                [self ChangeMusic_prev:nil];
+                NSLog(@"UIEventSubtypeRemoteControlPreviousTrack...");
+                break;
+            }
+            default:
+                break;
+        }
+    }
+}
+
 #pragma mark - Music Manage
+//加入播放队列
 -(void) AddMusicPlay:(NSInteger) index
 {
+    if (index>= _mrMusicList.count || index<0) {
+        return;
+    }
+    
     AVAudioSession *session = [AVAudioSession sharedInstance];
     [session setCategory:AVAudioSessionCategoryPlayback error:nil];
     [[AVAudioSession sharedInstance] setDelegate: self];
     
-	NSURL *musicURL = [[NSBundle mainBundle] URLForResource: [mr_musicList objectAtIndex:index]
-											  withExtension: @"mp3"];
+	NSURL *musicURL = [NSURL fileURLWithPath:[_mrMusicList objectAtIndex:index]];
     
     if (thePlayer == nil)
     {
@@ -92,6 +207,7 @@ AVAudioPlayer *thePlayer = nil;
         [thePlayer release];
         thePlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:musicURL error:nil];
     }
+    
 	thePlayer.volume		= 1;
 	thePlayer.numberOfLoops = 0;
 	thePlayer.delegate		= self;
@@ -102,7 +218,7 @@ AVAudioPlayer *thePlayer = nil;
 
 -(void) SwitchMusic
 {
-	if(++curPlayIndex>= [ar_musicName count])
+	if(++curPlayIndex>= [_mrMusicList count])
 	{
 		curPlayIndex = 0;
 	}
@@ -111,6 +227,7 @@ AVAudioPlayer *thePlayer = nil;
 	[self AddMusicPlay:curPlayIndex];
 }
 
+//睡眠时间设定
 - (void)handleTimer:(NSTimer *)timer
 {
 	//播放状态处理
@@ -131,16 +248,15 @@ AVAudioPlayer *thePlayer = nil;
 			[thePlayer stop];
 			isPlay = NO;
             setPlayTime = 0;
-			[self PlayButtionState:TRUE];
+			//[self PlayButtionState:TRUE];
 		}
 	}else{
 		//未播放处理
 		curPlaytime = 0;
 	}
-    
 }
 
-- (IBAction) playMusic:		 (id) sender
+- (IBAction) playMusic:(id) sender
 {
     curPlaytime =0;
     //[thePlayer release],thePlayer=nil;
@@ -198,7 +314,7 @@ AVAudioPlayer *thePlayer = nil;
 //下一曲
 - (IBAction) ChangeMusic_next:(id) sender
 {
-    if(++curPlayIndex>= [ar_musicName count])
+    if(++curPlayIndex>= [_mrMusicList count])
 	{
         NSLog(@"当前已为最后一首歌曲！");
         curPlayIndex = 0;
@@ -234,6 +350,13 @@ AVAudioPlayer *thePlayer = nil;
      */
 }
 
+//音量调节
+-(void)onVolumeBarChange:(VolumeBar*) sender
+{
+    int volume = sender.currentVolume;
+    [thePlayer setVolume:volume/10.0];
+}
+
 #pragma mark - View lifecycle
 - (void) ReadConfigWithFile
 {
@@ -262,11 +385,16 @@ AVAudioPlayer *thePlayer = nil;
 	return ;
 }
 
+-(void)PlayButtionState:(BOOL) state
+{
+    NSLog(@"play: %d",state);
+}
+
 #pragma mark - AVAudioPlayer
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
 	NSLog(@"play over");
-	//[self SwitchMusic];
+	[self SwitchMusic];
 	[thePlayer play];
 }
 
@@ -282,11 +410,21 @@ AVAudioPlayer *thePlayer = nil;
 	//[self PlayButtionState:FALSE];
 }
 
-
-
 #pragma mark - Flipside View Controller
 - (void)flipsideViewControllerDidFinish:(SHFlipsideViewController *)controller
 {
+    //copy SHFlipsideViewController.datasource to muMusicList
+    
+    //1. remvoe music list all
+    [_mrMusicList removeAllObjects];
+    
+    //2. add to music list
+    for (NSString* musicName in controller.myTableDataSource) {
+        NSString* strMusicPath = [[NSString getDocumentsPath] stringByAppendingPathComponent:musicName];
+        [_mrMusicList addObject:strMusicPath];
+    }
+    
+    //3. else
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         [self dismissViewControllerAnimated:YES completion:nil];
     } else {
@@ -296,10 +434,9 @@ AVAudioPlayer *thePlayer = nil;
 
 -(void) didSelectAtIndex:(int)index FileName:(NSString *)_fFileName
 {
-    
+    [self AddMusicPlay:index];
+    [self playMusic:nil];
 }
-
-
 
 - (IBAction)showInfo:(id)sender
 {
