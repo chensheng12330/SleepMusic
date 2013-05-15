@@ -5,6 +5,10 @@
 //  Created by sherwin.chen on 13-5-11.
 //  Copyright (c) 2013年 sherwin.chen. All rights reserved.
 //
+/*资料来源
+ http://www.xiaoyaoli.com/?p=906
+ http://hi.baidu.com/zhu410289616/item/6ff63cfba50fd7b130c19919
+ */
 
 #import "SHFlipsideViewController.h"
 #import <AVFoundation/AVFoundation.h>
