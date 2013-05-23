@@ -9,6 +9,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "SHMainViewController.h"
 #import "VolumeBar.h"
+#import "MusicPlaySettingViewController.h"
 
 AVAudioPlayer *thePlayer = nil;
 
@@ -458,6 +459,18 @@ AVAudioPlayer *thePlayer = nil;
             [self.flipsidePopoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
         }
     }
+}
+
+- (IBAction)musicPlaySetting:(id)sender {
+    
+
+    MusicPlaySettingViewController *mvc = [[MusicPlaySettingViewController alloc] init];
+                                           
+    popoverController = [[[UIPopoverController alloc] initWithContentViewController:mvc] autorelease];
+    popoverController.popoverContentSize = CGSizeMake(320,42*2);
+    
+    [popoverController presentPopoverFromRect:CGRectMake(0, 0, 10,5) inView:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

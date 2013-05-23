@@ -30,12 +30,14 @@ AVAudioPlayerDelegate>
 	int  curSelectPalyTimeRow;
     int  before_index;
 	BOOL isPlay;//是否在播放
+    
+    UIPopoverController* popoverController;
 }
-
 
 @property (strong, nonatomic) UIPopoverController *flipsidePopoverController;
 - (IBAction)showInfo:(id)sender;
 
+- (IBAction)musicPlaySetting:(id)sender;
 ///
 - (IBAction) playMusic:		 (id) sender;
 - (IBAction) playSetting:	 (id) sender;

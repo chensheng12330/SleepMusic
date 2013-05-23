@@ -54,10 +54,11 @@
 		58172ED3173E4E86003B7384 /* 513960306803facf2f000003.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 58172ECD173E4E86003B7384 /* 513960306803facf2f000003.jpg */; };
 		58172ED4173E4E86003B7384 /* back_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 58172ECE173E4E86003B7384 /* back_image.png */; };
 		58172ED8173E5103003B7384 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 58172ED7173E5103003B7384 /* icon.png */; };
-		585833EB1743A44E00F4A615 /* PopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 585833E91743A44E00F4A615 /* PopViewController.m */; };
-		585833EC1743A44E00F4A615 /* PopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 585833EA1743A44E00F4A615 /* PopViewController.xib */; };
+		585833EB1743A44E00F4A615 /* MusicPlaySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 585833E91743A44E00F4A615 /* MusicPlaySettingViewController.m */; };
+		585833EC1743A44E00F4A615 /* MusicPlaySettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 585833EA1743A44E00F4A615 /* MusicPlaySettingViewController.xib */; };
 		585E374317411D810060C22F /* NSString+NSString_File.m in Sources */ = {isa = PBXBuildFile; fileRef = 585E374217411D810060C22F /* NSString+NSString_File.m */; };
 		585E374517412D5A0060C22F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 585E374417412D5A0060C22F /* AudioToolbox.framework */; };
+		58BB6A89174E354B00DA23EC /* MusicPlaySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 585833E91743A44E00F4A615 /* MusicPlaySettingViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,9 +130,9 @@
 		58172ECD173E4E86003B7384 /* 513960306803facf2f000003.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 513960306803facf2f000003.jpg; sourceTree = "<group>"; };
 		58172ECE173E4E86003B7384 /* back_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_image.png; sourceTree = "<group>"; };
 		58172ED7173E5103003B7384 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		585833E81743A44E00F4A615 /* PopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopViewController.h; sourceTree = "<group>"; };
-		585833E91743A44E00F4A615 /* PopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopViewController.m; sourceTree = "<group>"; };
-		585833EA1743A44E00F4A615 /* PopViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopViewController.xib; sourceTree = "<group>"; };
+		585833E81743A44E00F4A615 /* MusicPlaySettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicPlaySettingViewController.h; sourceTree = "<group>"; };
+		585833E91743A44E00F4A615 /* MusicPlaySettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicPlaySettingViewController.m; sourceTree = "<group>"; };
+		585833EA1743A44E00F4A615 /* MusicPlaySettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MusicPlaySettingViewController.xib; sourceTree = "<group>"; };
 		585E374117411D810060C22F /* NSString+NSString_File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NSString_File.h"; sourceTree = "<group>"; };
 		585E374217411D810060C22F /* NSString+NSString_File.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSString_File.m"; sourceTree = "<group>"; };
 		585E374417412D5A0060C22F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -349,9 +350,9 @@
 		585833E71743A43500F4A615 /* SleepTimeSetting */ = {
 			isa = PBXGroup;
 			children = (
-				585833E81743A44E00F4A615 /* PopViewController.h */,
-				585833E91743A44E00F4A615 /* PopViewController.m */,
-				585833EA1743A44E00F4A615 /* PopViewController.xib */,
+				585833E81743A44E00F4A615 /* MusicPlaySettingViewController.h */,
+				585833E91743A44E00F4A615 /* MusicPlaySettingViewController.m */,
+				585833EA1743A44E00F4A615 /* MusicPlaySettingViewController.xib */,
 			);
 			name = SleepTimeSetting;
 			sourceTree = "<group>";
@@ -472,7 +473,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				58172EBC173DDBE4003B7384 /* InfoPlist.strings in Resources */,
-				585833EC1743A44E00F4A615 /* PopViewController.xib in Resources */,
+				585833EC1743A44E00F4A615 /* MusicPlaySettingViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,6 +500,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58BB6A89174E354B00DA23EC /* MusicPlaySettingViewController.m in Sources */,
 				58172E91173DDBE4003B7384 /* main.m in Sources */,
 				58172E95173DDBE4003B7384 /* SHAppDelegate.m in Sources */,
 				58172E9E173DDBE4003B7384 /* SHMainViewController.m in Sources */,
@@ -516,7 +518,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				58172EBF173DDBE4003B7384 /* SleepMusicTests.m in Sources */,
-				585833EB1743A44E00F4A615 /* PopViewController.m in Sources */,
+				585833EB1743A44E00F4A615 /* MusicPlaySettingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
